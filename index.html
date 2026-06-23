@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detask — What Google Tasks Should've Been</title>
-  <meta name="description" content="Detask is what Google Tasks should've been. Integrated, streamlined, with a native Google Calendar feel.">
+  <title>TaskDriver — The Fulfillment Engine for Real-World Tasks</title>
+  <meta name="description" content="TaskDriver doesn't just track your tasks — it drives them to done. An intelligent concierge that researches, drafts, schedules, and hands you every task ready for a single tap.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,8 +21,10 @@
       --color-text: #111111;
       --color-text-secondary: #555555;
       --color-text-tertiary: #888888;
-      --color-accent: #1a73e8;
-      --color-accent-light: #e8f0fe;
+      --color-accent: #5145e6;
+      --color-accent-light: #ecebfe;
+      --color-done: #16a34a;
+      --color-done-light: #e7f6ec;
       --color-border: #e5e5e5;
       --radius: 16px;
       --radius-sm: 10px;
@@ -115,7 +117,7 @@
     /* ── Hero ── */
     .hero {
       padding: 160px 32px 80px;
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
       text-align: center;
     }
@@ -147,7 +149,7 @@
     .hero p {
       font-size: 1.2rem;
       color: var(--color-text-secondary);
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto 40px;
       line-height: 1.7;
     }
@@ -199,36 +201,19 @@
       display: block;
     }
 
-    .screenshot-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      color: var(--color-text-tertiary);
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .screenshot-placeholder svg {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 12px;
-      opacity: 0.3;
-    }
-
-    /* ── Problem / Story ── */
+    /* ── Story ── */
     .story {
       padding: 80px 32px;
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto;
       text-align: center;
     }
 
     .story h2 {
-      font-size: 1.75rem;
+      font-size: clamp(1.6rem, 3vw, 2rem);
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
       margin-bottom: 20px;
     }
 
@@ -242,101 +227,318 @@
       margin-top: 16px;
     }
 
-    /* ── Features ── */
-    .features {
+    .story strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    /* ── Pillars ── */
+    .pillars {
       padding: 80px 32px;
-      max-width: 1000px;
+      max-width: 1040px;
       margin: 0 auto;
     }
 
-    .features-header {
+    .section-header {
       text-align: center;
       margin-bottom: 60px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .features-header h2 {
+    .section-header h2 {
       font-size: 2rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 12px;
     }
 
-    .features-header p {
+    .section-header p {
       font-size: 1.0625rem;
       color: var(--color-text-secondary);
     }
 
-    .features-grid {
+    .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
 
-    .feature-card {
-      padding: 32px 28px;
+    .pillar-card {
+      padding: 32px;
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
       transition: box-shadow 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
     }
 
-    .feature-card:hover {
+    .pillar-card:hover {
       box-shadow: 0 8px 32px rgba(0,0,0,0.06);
       transform: translateY(-2px);
     }
 
-    .feature-icon {
+    .pillar-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .pillar-icon {
       width: 44px;
       height: 44px;
+      flex-shrink: 0;
       border-radius: var(--radius-sm);
       background: var(--color-accent-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
     }
 
-    .feature-icon svg {
+    .pillar-icon svg {
       width: 22px;
       height: 22px;
       color: var(--color-accent);
     }
 
-    .feature-card h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
+    .pillar-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
     }
 
-    .feature-card p {
-      font-size: 0.875rem;
+    .pillar-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 2px;
+    }
+
+    .pillar-card .problem {
+      font-size: 0.9375rem;
       color: var(--color-text-secondary);
       line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .handoff {
+      margin-top: auto;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-accent);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+
+    .handoff-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-tertiary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .handoff p {
+      font-size: 0.9375rem;
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    /* ── How it works (3 views) ── */
+    .how {
+      padding: 80px 32px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+
+    .how-step {
+      padding: 28px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+    }
+
+    .how-step .num {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .how-step h3 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .how-step p {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Action Card demo ── */
+    .demo-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .demo-caption {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--color-text-tertiary);
+      margin-bottom: 20px;
+    }
+
+    .demo-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .demo-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .demo-head .dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--color-accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-head .dot svg {
+      width: 18px;
+      height: 18px;
+      color: var(--color-accent);
+    }
+
+    .demo-head h4 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .demo-q {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      padding: 18px 22px 6px;
+    }
+
+    .demo-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 14px 22px 22px;
+    }
+
+    .demo-option {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+
+    .demo-option .opt-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .demo-option.diy .opt-label { color: var(--color-accent); }
+    .demo-option.hire .opt-label { color: var(--color-done); }
+
+    .demo-option ul {
+      list-style: none;
+      margin-bottom: 14px;
+    }
+
+    .demo-option li {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .demo-option li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      color: var(--color-text-tertiary);
+    }
+
+    .demo-option .opt-btn {
+      display: block;
+      text-align: center;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 8px;
+      border-radius: 8px;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+    }
+
+    .demo-chat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-bg);
+    }
+
+    .demo-chat svg {
+      width: 18px;
+      height: 18px;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .demo-chat span {
+      font-size: 0.875rem;
+      color: var(--color-text-tertiary);
     }
 
     /* ── Integrations ── */
     .integrations {
       padding: 80px 32px;
-      max-width: 1000px;
+      max-width: 1040px;
       margin: 0 auto;
-    }
-
-    .integrations-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .integrations-header h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .integrations-header p {
-      font-size: 1.0625rem;
-      color: var(--color-text-secondary);
     }
 
     .integrations-grid {
@@ -458,6 +660,28 @@
       color: var(--color-text);
     }
 
+    /* ── CTA band ── */
+    .cta-band {
+      padding: 80px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .cta-band p {
+      font-size: 1.0625rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 32px;
+    }
+
     /* ── Footer ── */
     footer {
       padding: 48px 32px;
@@ -505,7 +729,12 @@
         padding: 0 16px 80px;
       }
 
-      .features-grid {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .how-grid {
         grid-template-columns: 1fr;
         gap: 16px;
       }
@@ -515,7 +744,7 @@
         gap: 16px;
       }
 
-      .story, .features, .integrations {
+      .story, .pillars, .how, .integrations {
         padding: 60px 20px;
       }
     }
@@ -525,10 +754,14 @@
         font-size: 2rem;
       }
 
-      .features-header h2,
+      .section-header h2,
       .integrations h2,
       .story h2 {
         font-size: 1.5rem;
+      }
+
+      .demo-options {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -537,11 +770,11 @@
 
   <!-- Nav -->
   <nav>
-    <a href="#" class="logo">de<span>task</span></a>
+    <a href="#" class="logo">task<span>driver</span></a>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#integrations">Integrations</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pillars">What it does</a></li>
       </ul>
       <a href="https://app.detask.ing" class="nav-signin">Sign in</a>
     </div>
@@ -549,11 +782,11 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">Task management, reimagined</div>
-    <h1>What Google Tasks <em>should've</em> been</h1>
-    <p>Integrated, streamlined, with a native Google Calendar feel. Detask extends the workflow you already love with powerful task management, integrations, and AI.</p>
-    <a href="#features" class="hero-cta">
-      See how it works
+    <div class="hero-badge">Meet the Fulfillment Engine</div>
+    <h1>Stop working for your tasks.<br>Make them <em>work for you.</em></h1>
+    <p>Every other app just tracks what you haven't done. TaskDriver is a fulfillment engine — an intelligent concierge that researches, drafts, schedules, and hands you each task ready for a single tap. We drive the busywork to zero, so all that's left is the part only you can do.</p>
+    <a href="#how" class="hero-cta">
+      See how it drives a task to done
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5-5-5-5"/></svg>
     </a>
   </section>
@@ -561,80 +794,168 @@
   <!-- Screenshot -->
   <section class="screenshot-section fade-in">
     <div class="screenshot-frame">
-      <img src="images/main-scr.png" alt="Detask app screenshot">
+      <img src="images/main-scr.png" alt="TaskDriver app screenshot">
     </div>
   </section>
 
   <!-- Story -->
   <section class="story fade-in">
-    <h2>The endless cycle ends here</h2>
-    <p>Todoist. Asana. Notion. TickTick. You've tried them all. And somehow, you always end up back at Google Calendar, stitching tasks together with workarounds.</p>
-    <p>Detask doesn't replace your calendar &mdash; it completes it. It feels like a native part of Google Calendar, because that's exactly how it was designed.</p>
+    <h2>Task managers track problems. We orchestrate solutions.</h2>
+    <p>Todoist, Things, TickTick — they're <strong>cognitive tax collectors.</strong> Beautiful lists that do nothing but remind you of everything you haven't done. The work of <em>actually doing it</em> stays entirely on you.</p>
+    <p>TaskDriver flips that. The hardest part of any task isn't the doing — it's the <strong>activation energy:</strong> the research, the forms, the phone calls, the figuring-out. We drive that overhead toward zero and leave you with only the unavoidable last step. Less friction between you and done means more things actually get done.</p>
   </section>
 
-  <!-- Features -->
-  <section class="features" id="features">
-    <div class="features-header fade-in">
-      <h2>Built for how you actually work</h2>
-      <p>Everything you need, nothing you don't.</p>
+  <!-- Pillars -->
+  <section class="pillars" id="pillars">
+    <div class="section-header fade-in">
+      <h2>Four ways we drive a task to done</h2>
+      <p>Every task you add is read, understood, and routed into the framework that finishes it fastest.</p>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card fade-in">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    <div class="pillars-grid">
+
+      <!-- Pillar A -->
+      <div class="pillar-card fade-in">
+        <div class="pillar-top">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="pillar-label">The Form</div>
+            <h3>Digital-to-paper, autocompleted</h3>
+          </div>
         </div>
-        <h3>Unified inbox + Today view</h3>
-        <p>All incoming tasks land in one inbox. Switch to Today to manage your day and plan for tomorrow, right alongside your meetings.</p>
+        <p class="problem">School registrations, medical waivers, municipal tax forms. TaskDriver reads the document and pre-fills 90% of it from your secure vault — name, address, ID, phone — then builds you a signing screen.</p>
+        <div class="handoff">
+          <div class="handoff-tag">The handoff</div>
+          <p>"I've pre-filled your municipal tax form. Draw your signature below to authorize me to send it, or tap to review the draft."</p>
+        </div>
       </div>
 
-      <div class="feature-card fade-in">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 00-3 3v12a3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3H6a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3V6a3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3h12a3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+      <!-- Pillar B -->
+      <div class="pillar-card fade-in">
+        <div class="pillar-top">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="pillar-label">The Errand</div>
+            <h3>The right moment to leave</h3>
+          </div>
         </div>
-        <h3>Keyboard-first</h3>
-        <p>Shortcuts for everything. Triage, schedule, move, complete &mdash; never reach for the mouse.</p>
+        <p class="problem">Drop the old computer at recycling, return the keys, get the crib to storage. TaskDriver weighs distance, traffic and opening hours against your calendar — then tells you exactly when to go and what to bring.</p>
+        <div class="handoff">
+          <div class="handoff-tag">The handoff</div>
+          <p>"The storage facility is open until 6:00 PM. With traffic, leaving at 3:15 PM is your best window. Bring your key card and a screwdriver to dismantle the frame."</p>
+        </div>
       </div>
 
-      <div class="feature-card fade-in">
-        <div class="feature-icon">
+      <!-- Pillar C -->
+      <div class="pillar-card fade-in">
+        <div class="pillar-top">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="pillar-label">The Dispatch</div>
+            <h3>One tap to the right pro</h3>
+          </div>
+        </div>
+        <p class="problem">A leak under the sink, a broken window, a noise in the car. TaskDriver searches local registries and reviews for the best 2–3 providers, checks your availability, and writes the message for you.</p>
+        <div class="handoff">
+          <div class="handoff-tag">The handoff</div>
+          <p>"Top-rated plumber nearby: Dan (★4.9). Message ready: 'Hey, my kitchen sink is leaking under the disposal. Free this Tuesday 9–11 AM?' Tap to open in WhatsApp."</p>
+        </div>
+      </div>
+
+      <!-- Pillar D -->
+      <div class="pillar-card fade-in">
+        <div class="pillar-top">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg>
+          </div>
+          <div>
+            <div class="pillar-label">The Fork</div>
+            <h3>Do it yourself, or hand it off</h3>
+          </div>
+        </div>
+        <p class="problem">Install a water filter, assemble a shelf. Some tasks can go two ways. TaskDriver lays out both paths side by side — the cost, the time, the link — so you just pick a lane.</p>
+        <div class="handoff">
+          <div class="handoff-tag">The handoff</div>
+          <p>"DIY: buy this filter ($35) and follow a 2-min guide. Or hire: local handyman ~$60, message ready to send. Your call."</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how" id="how">
+    <div class="section-header fade-in">
+      <h2>Built like a concierge, not a database</h2>
+      <p>No grids, no boards, no guilt. Just three calm views that move every task forward.</p>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-step fade-in">
+        <div class="num">1</div>
+        <h3>The Focused Feed</h3>
+        <p>A clean vertical stream of what's active. Each task shows only its title and its next step — "Awaiting your signature," "Handyman draft ready." Nothing else competes for your attention.</p>
+      </div>
+      <div class="how-step fade-in">
+        <div class="num">2</div>
+        <h3>The Action Card</h3>
+        <p>Tap a task and it expands into a handoff tailored to it — the pre-filled form, the optimal departure time, the message ready to send. Everything you need to finish, in one place.</p>
+      </div>
+      <div class="how-step fade-in">
+        <div class="num">3</div>
+        <h3>The Contextual Chat</h3>
+        <p>Every card has a chat line. Say "use the brand-name filter instead" or "check if Dan's free Friday" and the action buttons rewrite themselves in real time. The chat <em>is</em> the editor.</p>
+      </div>
+    </div>
+
+    <!-- Action Card demo -->
+    <div class="demo-wrap fade-in">
+      <p class="demo-caption">A real Action Card — tailored to the task, not a generic detail page.</p>
+      <div class="demo-card">
+        <div class="demo-head">
+          <div class="dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg>
+          </div>
+          <h4>Install water filter</h4>
+        </div>
+        <div class="demo-q">How would you like to handle this?</div>
+        <div class="demo-options">
+          <div class="demo-option diy">
+            <div class="opt-label">Option A · DIY</div>
+            <ul>
+              <li>Buy filter: Amazon ($35)</li>
+              <li>Est. time: 15 mins</li>
+            </ul>
+            <span class="opt-btn">View quick guide</span>
+          </div>
+          <div class="demo-option hire">
+            <div class="opt-label">Option B · Hire</div>
+            <ul>
+              <li>Local handyman: Dan</li>
+              <li>Est. cost: ~$50</li>
+            </ul>
+            <span class="opt-btn">Copy outreach draft</span>
+          </div>
+        </div>
+        <div class="demo-chat">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <span>Ask concierge: "Does Dan have good reviews?"</span>
         </div>
-        <h3>AI chat</h3>
-        <p>Ask anything about your tasks and lists. Get stats, find what you need, and organize intuitively with natural language.</p>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <h3>Rich context in lists</h3>
-        <p>Add Notion-like rich content to your tasks. Notes, checklists, links &mdash; everything lives with the task, not in a separate doc.</p>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
-        </div>
-        <h3>Recurring tasks + notifications</h3>
-        <p>Set up repeating tasks and reminders that feel just like Google Calendar events. Same logic, same reliability.</p>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <h3>Overdue? No guilt</h3>
-        <p>Quickly reschedule, snooze, or batch-move overdue tasks. Beat procrastination instead of drowning in red labels.</p>
       </div>
     </div>
   </section>
 
   <!-- Integrations -->
   <section class="integrations" id="integrations">
-    <div class="integrations-header fade-in">
-      <h2>Integrate to as many accounts as you need</h2>
-      <p>Connect as many accounts as you need. All of them sync into your unified inbox.</p>
+    <div class="section-header fade-in">
+      <h2>Plugged into everything that creates work</h2>
+      <p>Your calendar, your inbox, your tools. TaskDriver pulls in the context it needs and acts through the channels you already use.</p>
     </div>
 
     <div class="integrations-grid">
@@ -647,9 +968,9 @@
             <path d="M12.17 5.43c1.53 0 2.91.53 3.99 1.56l2.99-2.99C17.33 2.09 14.97 1 12.17 1 8.09 1 4.57 3.26 2.86 6.76l3.47 2.69c.82-2.47 3.12-4.02 5.84-4.02z" fill="#EA4335"/>
           </svg>
         </div>
-        <div class="unlimited-badge">Unlimited accounts</div>
+        <div class="unlimited-badge">Calendar-aware</div>
         <h3>Google Calendar</h3>
-        <p>Two-way sync. Choose exactly which calendars to sync to and from, across all your accounts.</p>
+        <p>Two-way sync across every account. The engine reads your real availability before it schedules anything for you.</p>
       </div>
 
       <div class="integration-card fade-in">
@@ -658,9 +979,9 @@
             <path d="M20 18h-2V9.25L12 13 6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20v12z" fill="#EA4335"/>
           </svg>
         </div>
-        <div class="unlimited-badge">Unlimited accounts</div>
+        <div class="unlimited-badge">Turns mail into action</div>
         <h3>Gmail</h3>
-        <p>Star or label an email to create a task with rich context. When a task is done, choose how to handle the email it came from.</p>
+        <p>Star or label an email and TaskDriver turns it into a task with all its context — then drafts the reply or next step for you.</p>
       </div>
 
       <div class="integration-card fade-in">
@@ -669,9 +990,9 @@
             <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
           </svg>
         </div>
-        <div class="unlimited-badge">Unlimited accounts</div>
+        <div class="unlimited-badge">Work, handled</div>
         <h3>GitHub</h3>
-        <p>Auto-create tasks when someone mentions you or assigns a PR for review. Stay on top of code without context-switching.</p>
+        <p>Mentions and review requests become tasks automatically — surfaced with the context you need to act, not just a notification.</p>
       </div>
 
       <div class="integration-card fade-in">
@@ -683,29 +1004,29 @@
             <path d="M15.164 18.956a2.528 2.528 0 012.521 2.522A2.528 2.528 0 0115.164 24a2.527 2.527 0 01-2.522-2.522v-2.522h2.522zm0-1.271a2.527 2.527 0 01-2.522-2.521 2.528 2.528 0 012.522-2.522h6.314A2.528 2.528 0 0124 15.164a2.528 2.528 0 01-2.522 2.521h-6.314z" fill="#ECB22E"/>
           </svg>
         </div>
-        <div class="unlimited-badge">Unlimited accounts</div>
+        <div class="unlimited-badge">Capture anywhere</div>
         <h3>Slack</h3>
-        <p>Create tasks directly from Slack messages and list existing tasks without leaving the conversation.</p>
+        <p>Turn any message into a fulfillment task without leaving the conversation. The engine takes it from there.</p>
       </div>
 
       <div class="integration-card fade-in">
         <div class="integration-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="3"/>
             <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
           </svg>
         </div>
         <div class="unlimited-badge">Any AI chat</div>
         <h3>MCP Server</h3>
-        <p>Connect your favorite AI chat to ask any question about your tasks or create new ones on the fly.</p>
+        <p>Connect your favorite AI assistant to drive tasks, ask about them, or hand off new ones from anywhere.</p>
       </div>
     </div>
   </section>
 
   <!-- Mobile -->
   <section class="mobile fade-in">
-    <h2>Take it with you</h2>
-    <p>Detask is a mobile-first, installable PWA &mdash; fast and ready on any device. A native Android app is on the way.</p>
+    <h2>A concierge in your pocket</h2>
+    <p>TaskDriver is a mobile-first, installable PWA &mdash; fast and ready on any device, right where the errands and handoffs happen. A native Android app is on the way.</p>
     <div class="store-banner">
       <svg viewBox="0 0 24 24">
         <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92z" fill="#4285F4"/>
@@ -720,9 +1041,19 @@
     </div>
   </section>
 
+  <!-- CTA band -->
+  <section class="cta-band fade-in">
+    <h2>Your to-do list, finally driving itself.</h2>
+    <p>Stop collecting reminders. Start handing off the work.</p>
+    <a href="https://app.detask.ing" class="hero-cta">
+      Get started
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5-5-5-5"/></svg>
+    </a>
+  </section>
+
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Detask. Built for people who get things done.</p>
+    <p>&copy; 2026 TaskDriver. We don't just track your tasks &mdash; we drive them to done.</p>
   </footer>
 
   <script>
