@@ -534,6 +534,147 @@
       color: var(--color-text-tertiary);
     }
 
+    /* ── The Gap (digital ↔ human) ── */
+    .gap {
+      padding: 80px 32px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .gap-track {
+      position: relative;
+      height: 8px;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--color-border) 0%, var(--color-accent) 100%);
+      margin-bottom: 12px;
+    }
+
+    .gap-ends {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-bottom: 44px;
+    }
+
+    .gap-ends .human { color: var(--color-text-tertiary); }
+    .gap-ends .digital { color: var(--color-accent); }
+
+    .gap-examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .gap-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .gap-card.digital {
+      border-color: var(--color-accent);
+      background: linear-gradient(180deg, var(--color-accent-light) 0%, var(--color-surface) 60%);
+    }
+
+    .gap-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .gap-card.human .gap-icon { background: var(--color-bg); }
+    .gap-card.human .gap-icon svg { width: 20px; height: 20px; color: var(--color-text-tertiary); }
+    .gap-card.digital .gap-icon { background: #fff; }
+    .gap-card.digital .gap-icon svg { width: 20px; height: 20px; color: var(--color-accent); }
+
+    .gap-tag {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .gap-card.human .gap-tag { color: var(--color-text-tertiary); }
+    .gap-card.digital .gap-tag { color: var(--color-accent); }
+
+    .gap-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .gap-card p {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .gap-card p strong { color: var(--color-text); font-weight: 600; }
+
+    /* ── Foundation (the basics) ── */
+    .foundation {
+      padding: 80px 32px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .base-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .base-card {
+      padding: 28px 24px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .base-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+
+    .base-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--color-accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .base-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--color-accent);
+    }
+
+    .base-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+
+    .base-card p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
     /* ── Integrations ── */
     .integrations {
       padding: 80px 32px;
@@ -744,7 +885,17 @@
         gap: 16px;
       }
 
-      .story, .pillars, .how, .integrations {
+      .gap-examples {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .base-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .story, .pillars, .how, .integrations, .gap, .foundation {
         padding: 60px 20px;
       }
     }
@@ -784,7 +935,7 @@
   <section class="hero">
     <div class="hero-badge">Meet the Fulfillment Engine</div>
     <h1>Stop working for your tasks.<br>Make them <em>work for you.</em></h1>
-    <p>Every other app just tracks what you haven't done. TaskDriver is a fulfillment engine — an intelligent concierge that researches, drafts, schedules, and hands you each task ready for a single tap. We drive the busywork to zero, so all that's left is the part only you can do.</p>
+    <p>Every other app just tracks what you haven't done. TaskDriver is a fulfillment engine — it takes each task as far as digitally possible, then hands it to you right at the finish line. Every task as done as it can be, so you're left with as little to do as possible.</p>
     <a href="#how" class="hero-cta">
       See how it drives a task to done
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5-5-5-5"/></svg>
@@ -803,6 +954,40 @@
     <h2>Task managers track problems. We orchestrate solutions.</h2>
     <p>Todoist, Things, TickTick — they're <strong>cognitive tax collectors.</strong> Beautiful lists that do nothing but remind you of everything you haven't done. The work of <em>actually doing it</em> stays entirely on you.</p>
     <p>TaskDriver flips that. The hardest part of any task isn't the doing — it's the <strong>activation energy:</strong> the research, the forms, the phone calls, the figuring-out. We drive that overhead toward zero and leave you with only the unavoidable last step. Less friction between you and done means more things actually get done.</p>
+  </section>
+
+  <!-- The Gap -->
+  <section class="gap fade-in">
+    <div class="section-header">
+      <h2>We close the gap between digital and done</h2>
+      <p>Some tasks are pure muscle. Most aren't. For every one, TaskDriver does as much of the digital work as it possibly can — then hands you the smallest remaining human step.</p>
+    </div>
+
+    <div class="gap-track"></div>
+    <div class="gap-ends">
+      <span class="human">Fully human · we step back</span>
+      <span class="digital">Mostly digital · we drive it home</span>
+    </div>
+
+    <div class="gap-examples">
+      <div class="gap-card human">
+        <div class="gap-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+        </div>
+        <div class="gap-tag">Fully human</div>
+        <h3>Take out the garbage</h3>
+        <p>There's no digital part to this — it's yours, start to finish. So we don't pretend otherwise. You get a <strong>clean, well-timed reminder</strong> and nothing in the way.</p>
+      </div>
+
+      <div class="gap-card digital">
+        <div class="gap-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg>
+        </div>
+        <div class="gap-tag">Mostly digital</div>
+        <h3>Sign a school form</h3>
+        <p>Almost all of this lives on a screen. So we go almost all the way: <strong>read it, pre-fill it from your vault, queue it to send</strong> — leaving you a single tap to add your signature.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Pillars -->
@@ -947,6 +1132,48 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           <span>Ask concierge: "Does Dan have good reviews?"</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foundation -->
+  <section class="foundation fade-in">
+    <div class="section-header">
+      <h2>A real task manager, underneath it all</h2>
+      <p>The engine sits on solid fundamentals — so every task has a home, and the right context, before it gets driven forward.</p>
+    </div>
+
+    <div class="base-grid">
+      <div class="base-card fade-in">
+        <div class="base-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <h3>Spaces</h3>
+        <p>Group tasks into spaces for your projects, areas, and the parts of life that deserve their own lane.</p>
+      </div>
+
+      <div class="base-card fade-in">
+        <div class="base-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <h3>Flexible views</h3>
+        <p>Move between focused feed, today, and inbox to see your work the way the moment calls for.</p>
+      </div>
+
+      <div class="base-card fade-in">
+        <div class="base-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+        </div>
+        <h3>File attachments</h3>
+        <p>Attach the form, the photo, the receipt. The context the engine needs lives right with the task.</p>
+      </div>
+
+      <div class="base-card fade-in">
+        <div class="base-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </div>
+        <h3>Reminders &amp; recurring</h3>
+        <p>Repeating tasks and reliable reminders, so the things that come back around never slip.</p>
       </div>
     </div>
   </section>
