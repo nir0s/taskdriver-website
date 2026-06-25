@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaskDriver — The Fulfillment Engine for Real-World Tasks</title>
+  <link rel="icon" type="image/jpeg" href="images/taskdriver-icon.jpeg">
+  <link rel="apple-touch-icon" href="images/taskdriver-icon.jpeg">
   <meta name="description" content="TaskDriver doesn't just track your tasks — for each one, it tries to get you closer to done. A concierge that researches, drafts, and schedules where it can, so you're left with less to do.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,11 +63,26 @@
     }
 
     .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
       font-size: 1.25rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--color-text);
       text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      object-fit: cover;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(-6deg) scale(1.08);
     }
 
     .logo span {
@@ -1183,7 +1200,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="#" class="logo">task<span>driver</span></a>
+    <a href="#" class="logo"><img src="images/taskdriver-icon.jpeg" alt="" class="logo-icon">task<span>driver</span></a>
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#how">How it works</a></li>
