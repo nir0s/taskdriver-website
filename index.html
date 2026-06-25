@@ -192,6 +192,16 @@
         0 1px 2px rgba(0,0,0,0.04),
         0 4px 16px rgba(0,0,0,0.06),
         0 24px 64px rgba(0,0,0,0.06);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .screenshot-frame:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.05),
+        0 8px 24px rgba(0,0,0,0.08),
+        0 32px 80px rgba(0,0,0,0.10);
     }
 
     .screenshot-frame img {
@@ -840,12 +850,140 @@
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Stagger children of grids/rows as the container reveals */
+    .fade-in.visible .pillar-card,
+    .fade-in.visible .how-step,
+    .fade-in.visible .base-card,
+    .fade-in.visible .integration-card,
+    .pillars-grid .pillar-card.fade-in.visible,
+    .how-grid .how-step.fade-in.visible,
+    .base-grid .base-card.fade-in.visible,
+    .integrations-grid .integration-card.fade-in.visible {
+      animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .pillars-grid .fade-in:nth-child(1) { transition-delay: 0s; }
+    .pillars-grid .fade-in:nth-child(2) { transition-delay: 0.08s; }
+    .pillars-grid .fade-in:nth-child(3) { transition-delay: 0.16s; }
+    .pillars-grid .fade-in:nth-child(4) { transition-delay: 0.24s; }
+
+    .how-grid .fade-in:nth-child(1) { transition-delay: 0s; }
+    .how-grid .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .how-grid .fade-in:nth-child(3) { transition-delay: 0.2s; }
+
+    .base-grid .fade-in:nth-child(1) { transition-delay: 0s; }
+    .base-grid .fade-in:nth-child(2) { transition-delay: 0.08s; }
+    .base-grid .fade-in:nth-child(3) { transition-delay: 0.16s; }
+    .base-grid .fade-in:nth-child(4) { transition-delay: 0.24s; }
+
+    .integrations-grid .fade-in:nth-child(1) { transition-delay: 0s; }
+    .integrations-grid .fade-in:nth-child(2) { transition-delay: 0.07s; }
+    .integrations-grid .fade-in:nth-child(3) { transition-delay: 0.14s; }
+    .integrations-grid .fade-in:nth-child(4) { transition-delay: 0.21s; }
+    .integrations-grid .fade-in:nth-child(5) { transition-delay: 0.28s; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero entrance on load */
+    @keyframes hero-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge,
+    .hero h1,
+    .hero p,
+    .hero-cta {
+      opacity: 0;
+      animation: hero-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .hero-badge { animation-delay: 0.05s; }
+    .hero h1    { animation-delay: 0.18s; }
+    .hero p     { animation-delay: 0.34s; }
+    .hero-cta   { animation-delay: 0.5s; }
+
+    /* CTA arrow nudges on hover */
+    .hero-cta svg,
+    .nav-signin svg {
+      transition: transform 0.2s ease;
+    }
+
+    .hero-cta:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Subtle float on the demo card */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    .demo-card {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Shimmer travelling along the gap track */
+    .gap-track {
+      overflow: hidden;
+    }
+
+    .gap-track::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 40%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+      animation: track-shimmer 3.5s ease-in-out infinite;
+    }
+
+    @keyframes track-shimmer {
+      0%   { transform: translateX(-100%); }
+      60%, 100% { transform: translateX(350%); }
+    }
+
+    /* Logo accent pulse on hover */
+    .logo span {
+      transition: opacity 0.2s ease;
+    }
+
+    .logo:hover span {
+      opacity: 0.7;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .hero-badge,
+      .hero h1,
+      .hero p,
+      .hero-cta,
+      .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+      }
     }
 
     /* ── Responsive ── */
