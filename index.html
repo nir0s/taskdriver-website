@@ -1102,6 +1102,113 @@
       transform: translateY(-2px);
     }
 
+    /* Drifting gradient blobs behind the hero */
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+    }
+
+    .bg-blobs .b1 {
+      width: 460px;
+      height: 460px;
+      top: -120px;
+      left: -80px;
+      background: radial-gradient(circle at 30% 30%, #c7d7ff, transparent 70%);
+      animation: drift-1 18s ease-in-out infinite;
+    }
+
+    .bg-blobs .b2 {
+      width: 520px;
+      height: 520px;
+      top: -40px;
+      right: -120px;
+      background: radial-gradient(circle at 70% 30%, #d6f5e0, transparent 70%);
+      animation: drift-2 22s ease-in-out infinite;
+    }
+
+    .bg-blobs .b3 {
+      width: 380px;
+      height: 380px;
+      top: 380px;
+      left: 45%;
+      background: radial-gradient(circle at 50% 50%, #e4e0ff, transparent 70%);
+      animation: drift-3 26s ease-in-out infinite;
+    }
+
+    @keyframes drift-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(60px, 40px) scale(1.1); }
+    }
+
+    @keyframes drift-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(-50px, 60px) scale(1.08); }
+    }
+
+    @keyframes drift-3 {
+      0%, 100% { transform: translate(-50%, 0) scale(1); }
+      50%      { transform: translate(-50%, -40px) scale(1.12); }
+    }
+
+    /* Shine sweep across primary buttons on hover */
+    .hero-cta,
+    .nav-signin {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta::after,
+    .nav-signin::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: skewX(-20deg);
+    }
+
+    .hero-cta:hover::after,
+    .nav-signin:hover::after {
+      animation: shine 0.75s ease;
+    }
+
+    @keyframes shine {
+      to { left: 130%; }
+    }
+
+    /* Bouncing scroll cue in the hero */
+    .scroll-cue {
+      display: flex;
+      justify-content: center;
+      margin-top: 56px;
+      opacity: 0;
+      animation: hero-up 0.8s ease 0.7s forwards;
+    }
+
+    .scroll-cue svg {
+      width: 26px;
+      height: 26px;
+      color: var(--color-text-tertiary);
+      animation: bob 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); opacity: 0.55; }
+      50%      { transform: translateY(8px); opacity: 1; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -1198,6 +1305,13 @@
 </head>
 <body>
 
+  <!-- Decorative background -->
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="b1"></span>
+    <span class="b2"></span>
+    <span class="b3"></span>
+  </div>
+
   <!-- Nav -->
   <nav>
     <a href="#" class="logo"><img src="images/taskdriver-icon.png" alt="" class="logo-icon">task<span>driver</span></a>
@@ -1219,6 +1333,9 @@
       See how it works
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5-5-5-5"/></svg>
     </a>
+    <div class="scroll-cue" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
   </section>
 
   <!-- Screenshot -->
