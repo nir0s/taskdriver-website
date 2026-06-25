@@ -966,6 +966,125 @@
       opacity: 0.7;
     }
 
+    /* Nav slides down on load */
+    @keyframes nav-down {
+      from { opacity: 0; transform: translateY(-100%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    nav {
+      animation: nav-down 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .nav-links a::after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 0;
+      margin-top: 2px;
+      border-radius: 2px;
+      background: var(--color-accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Flowing gradient on the hero accent words */
+    .hero h1 em {
+      background: linear-gradient(90deg, var(--color-accent), #8b7bff, var(--color-accent));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-flow 5s linear infinite;
+    }
+
+    @keyframes text-flow {
+      to { background-position: 200% center; }
+    }
+
+    /* Badge breathes gently */
+    @keyframes badge-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(81, 69, 230, 0); }
+      50%      { box-shadow: 0 0 0 6px rgba(81, 69, 230, 0.06); }
+    }
+
+    .hero-badge {
+      animation: hero-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards,
+                 badge-pulse 4s ease-in-out 1.2s infinite;
+    }
+
+    /* Icon containers react to card hover */
+    .pillar-icon,
+    .base-icon,
+    .integration-card-icon,
+    .demo-head .dot {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .pillar-card:hover .pillar-icon,
+    .base-card:hover .base-icon {
+      transform: scale(1.1) rotate(-4deg);
+    }
+
+    .integration-card:hover .integration-card-icon {
+      transform: scale(1.12) translateY(-2px);
+    }
+
+    /* How-step number lifts and tints on hover */
+    .how-step {
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .how-step:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+
+    .how-step .num {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+    }
+
+    .how-step:hover .num {
+      transform: scale(1.12) rotate(6deg);
+      box-shadow: 0 6px 16px rgba(81, 69, 230, 0.35);
+    }
+
+    /* Demo option lift on hover */
+    .demo-option {
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .demo-option:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .demo-option.diy:hover { border-color: var(--color-accent); }
+    .demo-option.hire:hover { border-color: var(--color-done); }
+
+    .demo-option .opt-btn {
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .demo-option .opt-btn:hover {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Store banner arrow / lift */
+    .store-banner {
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .store-banner:hover {
+      transform: translateY(-2px);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -983,6 +1102,11 @@
       .fade-in {
         opacity: 1 !important;
         transform: none !important;
+      }
+
+      .hero h1 em {
+        -webkit-text-fill-color: var(--color-accent);
+        background: none;
       }
     }
 
