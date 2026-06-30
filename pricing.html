@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskDriver — Pricing</title>
+  <link rel="icon" type="image/png" href="images/taskdriver-icon.png">
+  <link rel="apple-touch-icon" href="images/taskdriver-icon.png">
+  <meta name="description" content="TaskDriver pricing: $4/mo for the task manager, $18/mo with the AI concierge. One-month free trial of everything, no credit card. Cancel anytime, effective immediately.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #fafafa;
+      --color-surface: #ffffff;
+      --color-text: #111111;
+      --color-text-secondary: #555555;
+      --color-text-tertiary: #888888;
+      --color-accent: #5145e6;
+      --color-accent-light: #ecebfe;
+      --color-done: #16a34a;
+      --color-done-light: #e7f6ec;
+      --color-border: #e5e5e5;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(250, 250, 250, 0.8);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      object-fit: cover;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(-6deg) scale(1.08);
+    }
+
+    .logo span {
+      color: var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--color-text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-signin {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      background: var(--color-text);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-signin:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ── Page header ── */
+    .page-head {
+      padding: 152px 32px 8px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .page-head h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .page-head .lead {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Launch note ── */
+    .launch-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 28px auto 0;
+      padding: 8px 16px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border-radius: 100px;
+    }
+
+    .launch-note svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ── Plans ── */
+    .plans {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 48px 32px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .plan {
+      position: relative;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+    }
+
+    .plan.featured {
+      border-color: var(--color-accent);
+      box-shadow: 0 12px 40px rgba(81, 69, 230, 0.12);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 14px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: var(--color-accent);
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .plan-tagline {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      min-height: 40px;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 20px 0 2px;
+    }
+
+    .plan-price .amount {
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .plan-price .per {
+      font-size: 0.9375rem;
+      color: var(--color-text-tertiary);
+      font-weight: 500;
+    }
+
+    .plan-yearly {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .plan-cta {
+      display: block;
+      margin: 24px 0 4px;
+      padding: 13px;
+      text-align: center;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .plan-cta.primary {
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    .plan-cta.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(81, 69, 230, 0.3);
+    }
+
+    .plan-cta.secondary {
+      background: var(--color-bg);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .plan-cta.secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-top: 20px;
+      border-top: 1px solid var(--color-border);
+      padding-top: 20px;
+    }
+
+    .plan-features li {
+      position: relative;
+      padding: 7px 0 7px 30px;
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .plan-features li svg {
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 18px;
+      height: 18px;
+    }
+
+    .plan-features li.muted {
+      color: var(--color-text-tertiary);
+    }
+
+    .plan-features strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    /* ── Trial strip ── */
+    .trial {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 8px 32px 72px;
+    }
+
+    .trial-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 24px 28px;
+      background: var(--color-done-light);
+      border: 1px solid #cdebd6;
+      border-radius: var(--radius);
+    }
+
+    .trial-card svg {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      color: var(--color-done);
+    }
+
+    .trial-card h2 {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .trial-card p {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 32px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+
+    footer p {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .plans { grid-template-columns: 1fr; gap: 32px; padding-top: 56px; }
+      .plan.featured { order: -1; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .page-head { padding: 128px 20px 8px; }
+      .plans, .trial { padding-left: 20px; padding-right: 20px; }
+      .trial-card { flex-direction: column; text-align: center; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="logo"><img src="images/taskdriver-icon.png" alt="" class="logo-icon"><span>taskdriver</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#pillars">What it does</a></li>
+        <li><a href="pricing.html" class="active">Pricing</a></li>
+        <li><a href="research.html">The science</a></li>
+      </ul>
+      <a href="https://app.taskdriver.io" class="nav-signin">Sign in</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-head">
+    <span class="page-eyebrow">Pricing</span>
+    <h1>Simple, honest pricing</h1>
+    <p class="lead">Two plans. One does the organizing; the other does the work. No tiers to decode, no per-seat math.</p>
+    <div class="launch-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      These will be the prices when we launch.
+    </div>
+  </header>
+
+  <!-- Plans -->
+  <section class="plans">
+
+    <!-- Tracker -->
+    <div class="plan">
+      <div class="plan-name">Tracker</div>
+      <div class="plan-tagline">A calm, capable task manager. You drive; we keep everything in order.</div>
+      <div class="plan-price">
+        <span class="amount">$4</span>
+        <span class="per">/ month</span>
+      </div>
+      <div class="plan-yearly">or $40 / year</div>
+      <a href="https://app.taskdriver.io" class="plan-cta secondary">Start free month</a>
+      <ul class="plan-features">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>The Focused Feed, Action Cards &amp; contextual views</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Capture from Calendar, Gmail, Drive, GitHub &amp; Slack</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited tasks, on every device (PWA)</li>
+        <li class="muted"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>No AI concierge — the digital work stays with you</li>
+      </ul>
+    </div>
+
+    <!-- Concierge -->
+    <div class="plan featured">
+      <div class="plan-badge">The full fulfillment engine</div>
+      <div class="plan-name">Concierge</div>
+      <div class="plan-tagline">The AI behind the engine does the digital legwork and hands you what's left.</div>
+      <div class="plan-price">
+        <span class="amount">$18</span>
+        <span class="per">/ month</span>
+      </div>
+      <div class="plan-yearly">or $180 / year</div>
+      <a href="https://app.taskdriver.io" class="plan-cta primary">Start free month</a>
+      <ul class="plan-features">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><strong>Everything in Tracker</strong></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>The <strong>AI concierge</strong> — researches, drafts, schedules &amp; fills forms</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Drives every task as close to done as possible</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Contextual Chat to redirect any task in real time</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Trial -->
+  <section class="trial">
+    <div class="trial-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      <div>
+        <h2>Start with a free month of everything</h2>
+        <p>Every new account gets a full month with all features &mdash; concierge included &mdash; with <strong>no credit card required</strong>. Cancel anytime, effective immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 TaskDriver. We don't just track your tasks &mdash; we try to help you finish them.</p>
+  </footer>
+
+</body>
+</html>
