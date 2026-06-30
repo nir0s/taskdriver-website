@@ -34,6 +34,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -41,6 +42,7 @@
       background: var(--color-bg);
       color: var(--color-text);
       line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -727,7 +729,7 @@
 
     .integrations-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
 
@@ -803,6 +805,13 @@
       color: var(--color-text-secondary);
       line-height: 1.7;
       margin-bottom: 32px;
+    }
+
+    .store-banners {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
     }
 
     .store-banner {
@@ -1281,6 +1290,12 @@
         gap: 16px;
       }
 
+      /* Reveal vertically on mobile — horizontal slide-ins would overflow the viewport */
+      .fade-in.from-left,
+      .fade-in.from-right {
+        transform: translateY(34px);
+      }
+
       .base-grid {
         grid-template-columns: 1fr 1fr;
         gap: 16px;
@@ -1619,6 +1634,22 @@
 
       <div class="integration-card fade-in">
         <div class="integration-card-icon">
+          <svg viewBox="0 0 87.3 78">
+            <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+            <path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.4-1.2 2.95-1.2 4.5h27.5z" fill="#00ac47"/>
+            <path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/>
+            <path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+            <path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+            <path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+          </svg>
+        </div>
+        <div class="unlimited-badge">Docs into action</div>
+        <h3>Google Drive</h3>
+        <p>Every TaskDriver mention in a doc becomes a task — captured with the surrounding context, so the work starts itself the moment you write it down.</p>
+      </div>
+
+      <div class="integration-card fade-in">
+        <div class="integration-card-icon">
           <svg viewBox="0 0 24 24" fill="#24292f">
             <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
           </svg>
@@ -1659,17 +1690,28 @@
   <!-- Mobile -->
   <section class="mobile fade-in">
     <h2>A concierge in your pocket</h2>
-    <p>TaskDriver is a mobile-first, installable PWA &mdash; fast and ready on any device, right where the errands and handoffs happen. A native Android app is on the way.</p>
-    <div class="store-banner">
-      <svg viewBox="0 0 24 24">
-        <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92z" fill="#4285F4"/>
-        <path d="M17.556 8.248l-3.764 3.753 3.764 3.752 4.247-2.39a1.002 1.002 0 000-1.726l-4.247-2.39z" fill="#FBBC04"/>
-        <path d="M3.609 1.814L13.792 12l3.764-3.752-9.924-5.59a1.09 1.09 0 00-4.023-.844z" fill="#34A853"/>
-        <path d="M13.792 12L3.61 22.186a1.09 1.09 0 004.023-.844l9.924-5.59L13.792 12z" fill="#EA4335"/>
-      </svg>
-      <div class="store-banner-text">
-        <div class="coming-soon">Coming soon</div>
-        <div class="store-name">Google Play</div>
+    <p>TaskDriver is a mobile-first, installable PWA &mdash; fast and ready on any device, right where the errands and handoffs happen. Native iOS and Android apps are on the way.</p>
+    <div class="store-banners">
+      <div class="store-banner">
+        <svg viewBox="0 0 24 24">
+          <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92z" fill="#4285F4"/>
+          <path d="M17.556 8.248l-3.764 3.753 3.764 3.752 4.247-2.39a1.002 1.002 0 000-1.726l-4.247-2.39z" fill="#FBBC04"/>
+          <path d="M3.609 1.814L13.792 12l3.764-3.752-9.924-5.59a1.09 1.09 0 00-4.023-.844z" fill="#34A853"/>
+          <path d="M13.792 12L3.61 22.186a1.09 1.09 0 004.023-.844l9.924-5.59L13.792 12z" fill="#EA4335"/>
+        </svg>
+        <div class="store-banner-text">
+          <div class="coming-soon">Coming soon</div>
+          <div class="store-name">Google Play</div>
+        </div>
+      </div>
+      <div class="store-banner">
+        <svg viewBox="0 0 24 24">
+          <path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.02-3.77-2.05-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.89-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.47 7.84 1.31 10.41.87 1.26 1.9 2.67 3.26 2.62 1.31-.05 1.8-.85 3.39-.85 1.58 0 2.03.85 3.41.82 1.41-.02 2.3-1.28 3.16-2.55 1-1.46 1.41-2.88 1.43-2.95-.03-.01-2.74-1.05-2.77-4.17zM14.46 4.16c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.29.69-3.03 1.56-.66.77-1.24 2-1.09 3.18 1.15.09 2.32-.58 3.05-1.45z" fill="#000"/>
+        </svg>
+        <div class="store-banner-text">
+          <div class="coming-soon">Coming soon</div>
+          <div class="store-name">App Store</div>
+        </div>
       </div>
     </div>
   </section>
