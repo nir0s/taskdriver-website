@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Science Behind TaskDriver — Activation Energy &amp; Getting Things Done</title>
+  <link rel="icon" type="image/png" href="images/taskdriver-icon.png">
+  <link rel="apple-touch-icon" href="images/taskdriver-icon.png">
+  <meta name="description" content="The research behind TaskDriver: why activation energy and task aversiveness are among the biggest reasons everyday tasks don't get done — and why reducing friction helps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #fafafa;
+      --color-surface: #ffffff;
+      --color-text: #111111;
+      --color-text-secondary: #555555;
+      --color-text-tertiary: #888888;
+      --color-accent: #5145e6;
+      --color-accent-light: #ecebfe;
+      --color-done: #16a34a;
+      --color-done-light: #e7f6ec;
+      --color-border: #e5e5e5;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(250, 250, 250, 0.8);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      object-fit: cover;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(-6deg) scale(1.08);
+    }
+
+    .logo span {
+      color: var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--color-text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-signin {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      background: var(--color-text);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-signin:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ── Page header ── */
+    .page-head {
+      padding: 152px 32px 48px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .page-head h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .page-head .lead {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Article ── */
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 32px 64px;
+    }
+
+    .finding {
+      padding: 36px 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .finding:first-child {
+      border-top: none;
+    }
+
+    .finding h2 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .finding h2 .num {
+      color: var(--color-accent);
+      font-variant-numeric: tabular-nums;
+      margin-right: 10px;
+    }
+
+    .finding p {
+      font-size: 1.0625rem;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+
+    .finding p + p {
+      margin-top: 16px;
+    }
+
+    .finding strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .finding a {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .finding a:hover {
+      border-color: var(--color-accent);
+    }
+
+    .stat {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      margin: 22px 0 4px;
+      padding: 14px 20px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius-sm);
+    }
+
+    .stat b {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      letter-spacing: -0.02em;
+    }
+
+    .stat span {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* ── Caveat callout ── */
+    .caveat {
+      margin-top: 8px;
+      padding: 24px 26px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-accent);
+      border-radius: var(--radius-sm);
+    }
+
+    .caveat h2 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .caveat p {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ── References ── */
+    .refs {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8px 32px 80px;
+    }
+
+    .refs h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: 20px;
+    }
+
+    .refs ol {
+      list-style: none;
+      counter-reset: ref;
+    }
+
+    .refs li {
+      counter-increment: ref;
+      position: relative;
+      padding: 14px 0 14px 36px;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .refs li::before {
+      content: counter(ref);
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border-radius: 6px;
+    }
+
+    .refs a {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .refs a:hover {
+      border-color: var(--color-accent);
+    }
+
+    /* ── CTA band ── */
+    .cta-band {
+      padding: 64px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(81, 69, 230, 0.3);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 32px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+
+    footer p {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 18px; }
+      .page-head { padding: 128px 20px 36px; }
+      article, .refs, .cta-band { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="logo"><img src="images/taskdriver-icon.png" alt="" class="logo-icon"><span>taskdriver</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#pillars">What it does</a></li>
+        <li><a href="research.html" class="active">The science</a></li>
+      </ul>
+      <a href="https://app.taskdriver.io" class="nav-signin">Sign in</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-head">
+    <span class="page-eyebrow">The science</span>
+    <h1>Why tasks don't get done</h1>
+    <p class="lead">TaskDriver is built on a simple premise: the hardest part of most everyday tasks isn't the doing — it's the <em>activation energy</em> required to get going. That isn't just a turn of phrase. Here's what decades of psychology and behavioral science actually say about it.</p>
+  </header>
+
+  <!-- Findings -->
+  <article>
+    <section class="finding">
+      <h2><span class="num">01</span>Where the term comes from</h2>
+      <p>&ldquo;Activation energy&rdquo; is borrowed from chemistry — the initial push a reaction needs before it can proceed on its own. The psychologist <strong>Mihaly Csikszentmihalyi</strong>, who pioneered the study of <em>flow</em>, applied the same idea to human behavior: every worthwhile activity demands an upfront burst of energy to begin, before it can become self-sustaining and even enjoyable.</p>
+      <p>The metaphor stuck because it matches lived experience: starting is disproportionately hard relative to continuing. The rigorous evidence for <em>why</em> lives under three other names.</p>
+    </section>
+
+    <section class="finding">
+      <h2><span class="num">02</span>Task aversiveness predicts procrastination</h2>
+      <p>The most direct evidence comes from <strong>Piers Steel's 2007 meta-analysis</strong> in <em>Psychological Bulletin</em> — the definitive review of the field, pooling 691 correlations. It found <strong>task aversiveness</strong> to be one of the strongest and most consistent predictors of procrastination: the more unpleasant or effortful a task feels to engage, the more reliably it gets put off.</p>
+      <div class="stat">
+        <b>r &asymp; 0.40</b>
+        <span>correlation between task aversiveness and procrastination (Steel, 2007)</span>
+      </div>
+      <p>This maps almost exactly onto TaskDriver's premise: tasks we'd rather not do are precisely the ones that stall. Reduce how aversive the first step feels, and more of them get finished.</p>
+    </section>
+
+    <section class="finding">
+      <h2><span class="num">03</span>The brain treats effort as a cost</h2>
+      <p>Underneath aversiveness is a deeper mechanism: people actively avoid effort because the brain codes it as <strong>disutility</strong> — a cost to be minimized.</p>
+      <p>The <strong>&ldquo;law of less work&rdquo;</strong> (Hull, 1943; extended to mental effort by Kahneman, 1973) holds that we choose actions that minimize exertion. Modern work formalizes this as <strong>cognitive effort discounting</strong>: the value of a reward is discounted in proportion to the effort required to earn it — so an upfront barrier literally makes the payoff feel smaller. And in <strong>demand-avoidance</strong> experiments (Kool et al., 2010), given a free choice, people reliably pick the lower-effort option even when it offers no other advantage.</p>
+    </section>
+
+    <section class="finding">
+      <h2><span class="num">04</span>Removing friction beats adding willpower</h2>
+      <p>If the barrier is the problem, the fix is to lower it — not to push harder. <strong>Kurt Lewin's</strong> force-field analysis showed that behavior is held back as much by small &ldquo;restraining forces&rdquo; as it is driven by motivation, and that the fastest route to action is usually removing a restrainer.</p>
+      <p>The modern <strong>nudge / sludge</strong> literature (meta-analyzed in <em>Royal Society Open Science</em>, 2023) bears this out: small reductions in friction on the <em>initiation</em> step reliably change whether people follow through. That is the entire design philosophy behind TaskDriver — do the digital legwork that makes a task aversive, so the remaining human step is small enough to just do.</p>
+    </section>
+
+    <section class="finding">
+      <div class="caveat">
+        <h2>An honest caveat</h2>
+        <p>We won't claim activation energy is <em>the</em> single cause of unfinished tasks — that would overstate the evidence. In Steel's data, impulsiveness and low self-control rank as strong as task aversiveness, and people differ widely. What the research does support is that activation energy and task aversiveness are <strong>among the major, well-documented reasons</strong> things don't get done. That's the part TaskDriver is built to take off your plate.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- References -->
+  <section class="refs">
+    <h2>References</h2>
+    <ol>
+      <li>Steel, P. (2007). The Nature of Procrastination: A Meta-Analytic and Theoretical Review of Quintessential Self-Regulatory Failure. <em>Psychological Bulletin</em>, 133(1), 65&ndash;94. <a href="https://time.com/wp-content/uploads/2015/05/steel_psychbulletin_2007_postprint.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>Csikszentmihalyi, M. (1990). <em>Flow: The Psychology of Optimal Experience</em> — on the &ldquo;activation energy&rdquo; required to begin. <a href="https://grahammann.net/book-notes/flow-mihaly-csikszentmihalyi" target="_blank" rel="noopener">Summary</a></li>
+      <li>Kool, W., McGuire, J. T., Rosen, Z. B., &amp; Botvinick, M. M. (2010). Decision making and the avoidance of cognitive demand. <em>Journal of Experimental Psychology: General</em>. <a href="https://pubmed.ncbi.nlm.nih.gov/20853993/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>On cognitive effort discounting and the &ldquo;law of less work&rdquo; (Hull, 1943; Kahneman, 1973). <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7556472/" target="_blank" rel="noopener">PMC review</a></li>
+      <li>Mertens, S., et al. (2023). A meta-analytic cognitive framework of nudge and sludge. <em>Royal Society Open Science</em>, 10(11). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10685127/" target="_blank" rel="noopener">PMC</a></li>
+    </ol>
+  </section>
+
+  <!-- CTA band -->
+  <section class="cta-band">
+    <h2>Less activation energy. More done.</h2>
+    <a href="https://app.taskdriver.io" class="hero-cta">
+      Request early access
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5-5-5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 TaskDriver. We don't just track your tasks &mdash; we try to help you finish them.</p>
+  </footer>
+
+</body>
+</html>
