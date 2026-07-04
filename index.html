@@ -23,8 +23,8 @@
       --color-text: #111111;
       --color-text-secondary: #555555;
       --color-text-tertiary: #888888;
-      --color-accent: #5145e6;
-      --color-accent-light: #ecebfe;
+      --color-accent: #60CCC5;
+      --color-accent-light: #e4f7f5;
       --color-done: #16a34a;
       --color-done-light: #e7f6ec;
       --color-border: #e5e5e5;
@@ -1017,7 +1017,7 @@
 
     /* Flowing gradient on the hero accent words */
     .hero h1 em {
-      background: linear-gradient(90deg, var(--color-accent), #8b7bff, var(--color-accent));
+      background: linear-gradient(90deg, var(--color-accent), #8be3db, var(--color-accent));
       background-size: 200% auto;
       -webkit-background-clip: text;
       background-clip: text;
@@ -1031,8 +1031,8 @@
 
     /* Badge breathes gently */
     @keyframes badge-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(81, 69, 230, 0); }
-      50%      { box-shadow: 0 0 0 6px rgba(81, 69, 230, 0.06); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(96, 204, 197, 0); }
+      50%      { box-shadow: 0 0 0 6px rgba(96, 204, 197, 0.06); }
     }
 
     .hero-badge {
@@ -1073,7 +1073,7 @@
 
     .how-step:hover .num {
       transform: scale(1.12) rotate(6deg);
-      box-shadow: 0 6px 16px rgba(81, 69, 230, 0.35);
+      box-shadow: 0 6px 16px rgba(96, 204, 197, 0.35);
     }
 
     /* Demo option lift on hover */
@@ -1148,7 +1148,7 @@
       height: 380px;
       top: 380px;
       left: 45%;
-      background: radial-gradient(circle at 50% 50%, #e4e0ff, transparent 70%);
+      background: radial-gradient(circle at 50% 50%, #cdeeea, transparent 70%);
       animation: drift-3 26s ease-in-out infinite;
     }
 
@@ -1225,7 +1225,7 @@
       width: 100%;
       transform: scaleX(0);
       transform-origin: 0 50%;
-      background: linear-gradient(90deg, var(--color-accent), #8b7bff, var(--color-accent));
+      background: linear-gradient(90deg, var(--color-accent), #8be3db, var(--color-accent));
       z-index: 200;
       will-change: transform;
       pointer-events: none;
@@ -1726,7 +1726,7 @@
 
       <div class="integration-card fade-in">
         <div class="integration-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5145e6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#60CCC5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="3"/>
             <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
           </svg>
