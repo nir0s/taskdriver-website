@@ -277,6 +277,51 @@
       border-color: var(--color-accent);
     }
 
+    /* ── Manifesto band ── */
+    .manifesto {
+      background: var(--color-accent-light);
+      padding: 88px 32px;
+    }
+
+    .manifesto-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .manifesto .eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .manifesto h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .manifesto p {
+      font-size: 1.0625rem;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+
+    .manifesto p + p {
+      margin-top: 16px;
+    }
+
+    .manifesto strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
     /* ── Pillars ── */
     .pillars {
       padding: 80px 32px;
@@ -1386,6 +1431,16 @@
     <p>Other task managers are <strong>cognitive tax collectors.</strong> Beautiful lists that do nothing but remind you of everything you haven't done. The work of <em>actually doing it</em> stays entirely on you.</p>
     <p>TaskDriver takes a different angle. The hardest part of any task often isn't the doing — it's the <strong>activation energy:</strong> the research, the forms, the phone calls, the figuring-out. We try to reduce that overhead as much as we can, so more of what's left is just the unavoidable last step. Less friction between you and done means more things actually get done.</p>
     <a href="research.html" class="cite-link">The research behind this &rarr;</a>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="manifesto fade-in">
+    <div class="manifesto-inner">
+      <span class="eyebrow">Why another task manager?</span>
+      <h2>Because someone still has to show up.</h2>
+      <p>Work is going agent-led. Tickets get filed, docs get written, and knowing every detail yourself matters a little less by the day. You might already run <strong>Linear</strong> from your terminal, or live in <strong>Notion</strong> or <strong>Asana</strong> — that's the machine talking to machines.</p>
+      <p>But there's always a point where the digital work meets the real world — the form only you can sign, the call only you can make, the place only you can be. TaskDriver is built to be <strong>that interface: the human layer that's left</strong> once the agents have done the rest.</p>
+    </div>
   </section>
 
   <!-- The Gap -->
