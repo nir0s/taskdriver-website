@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Science Behind TaskDriver — Activation Energy &amp; Getting Things Done</title>
+  <title>The Science Behind TaskDriver — Activation Energy, Priority &amp; Getting Things Done</title>
   <link rel="icon" type="image/png" href="images/taskdriver-icon-transparent.png">
   <link rel="apple-touch-icon" href="images/taskdriver-icon-transparent.png">
-  <meta name="description" content="The research behind TaskDriver: why activation energy and task aversiveness are among the biggest reasons everyday tasks don't get done — and why reducing friction helps.">
+  <meta name="description" content="The research behind TaskDriver: why activation energy and task aversiveness are among the biggest reasons everyday tasks don't get done, why the priority field asks a question you can't cheaply answer, and what we changed because of it.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -244,6 +244,82 @@
       color: var(--color-text-secondary);
     }
 
+    /* ── Part divider — the page carries two related threads, and the
+       second one needs its own door rather than a sixth numbered card. ── */
+    .part {
+      max-width: 720px;
+      margin: 56px auto 0;
+      padding: 0 32px;
+    }
+
+    .part-rule {
+      height: 1px;
+      background: var(--color-border);
+      margin-bottom: 40px;
+    }
+
+    .part-eyebrow {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+
+    .part h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .part p {
+      color: var(--color-text-secondary);
+      font-size: 1.0625rem;
+    }
+
+    /* ── Data table — used once, for our own production numbers. ── */
+    .datatable {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 22px 0 6px;
+      font-size: 0.9375rem;
+    }
+
+    .datatable th,
+    .datatable td {
+      text-align: right;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--color-border);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .datatable th:first-child,
+    .datatable td:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .datatable thead th {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .datatable tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .table-note {
+      font-size: 0.875rem;
+      color: var(--color-text-tertiary);
+    }
+
     /* ── Caveat callout ── */
     .caveat {
       margin-top: 8px;
@@ -400,7 +476,7 @@
   <header class="page-head">
     <span class="page-eyebrow">The science</span>
     <h1>Why tasks don't get done</h1>
-    <p class="lead">TaskDriver is built on a simple premise: the hardest part of most everyday tasks isn't the doing — it's the <em>activation energy</em> required to get going. That isn't just a turn of phrase. Here's what decades of psychology and behavioral science actually say about it.</p>
+    <p class="lead">TaskDriver is built on a simple premise: the hardest part of most everyday tasks isn't the doing — it's the <em>activation energy</em> required to get going. That isn't just a turn of phrase. Here's what decades of psychology and behavioral science actually say about it &mdash; and, in <a href="#priority">part two</a>, why the &ldquo;priority&rdquo; field every task app ships makes the problem worse.</p>
   </header>
 
   <!-- Findings -->
@@ -441,6 +517,67 @@
     </section>
   </article>
 
+  <!-- Part two: priority vs importance -->
+  <div class="part" id="priority">
+    <div class="part-rule"></div>
+    <span class="part-eyebrow">Part two</span>
+    <h2>Why the priority field doesn&rsquo;t work</h2>
+    <p>Activation energy isn&rsquo;t only paid when you start a task. It&rsquo;s paid again every time an app asks you a question you can&rsquo;t cheaply answer &mdash; and &ldquo;what priority is this?&rdquo; is the most common one in the category.</p>
+  </div>
+
+  <article>
+    <section class="finding">
+      <h2><span class="num">05</span>Priority asks a question you can&rsquo;t answer alone</h2>
+      <p>&ldquo;How important is this?&rdquo; can be answered from the task in front of you, in about a second. <strong>&ldquo;What priority is this?&rdquo; cannot</strong> &mdash; priority is a ranking, so answering it means holding the rest of your list in your head. The cost of the question grows with the size of your backlog, which is exactly backwards.</p>
+      <p>That isn&rsquo;t a quirk of any one app. In <strong>ITIL</strong>, the framework that formalized the term for IT operations, priority is explicitly a <em>derived</em> value: a function of <strong>impact</strong> (how much it matters) and <strong>urgency</strong> (how soon it must happen). Jira Service Management ships it that way &mdash; two fields in, priority computed out. A task app with a single &ldquo;Priority&rdquo; field is asking you to compute that function in your head, at the moment you&rsquo;re trying to write something down and move on.</p>
+      <p>The industry can&rsquo;t hold the line either. Todoist&rsquo;s own documentation defines P1 as &ldquo;Most important, urgent&rdquo; and P4 as &ldquo;Least important, not urgent&rdquo; &mdash; both axes, one scale. Linear offers Low, Medium, High and <em>Urgent</em>: three magnitudes and a deadline in the same menu. Microsoft never used the word at the protocol layer at all &mdash; its task field is literally called <strong>Importance</strong>. And the GTD-lineage apps mostly refuse the field: OmniFocus shipped for years with flags instead, its manual describing them as a way to &ldquo;flag items of importance&rdquo;.</p>
+    </section>
+
+    <section class="finding">
+      <h2><span class="num">06</span>Urgency crowds out importance</h2>
+      <p>Mixing the two axes isn&rsquo;t just untidy &mdash; it feeds a documented bias. In <strong>Zhu, Yang and Hsee&rsquo;s 2018 work</strong> in the <em>Journal of Consumer Research</em>, five experiments found what they named the <strong>mere urgency effect</strong>: people chose objectively lower-payoff tasks over higher-payoff ones purely because the low-payoff ones were framed as time-sensitive &mdash; with the rewards controlled for.</p>
+      <div class="stat">
+        <b>5 of 5</b>
+        <span>experiments in which urgency beat payoff, rewards held constant (Zhu, Yang &amp; Hsee, 2018)</span>
+      </div>
+      <p>The obvious conclusion &mdash; that people are bad at prioritizing &mdash; is the wrong one. <strong>Bellotti and colleagues (CHI 2004)</strong> studied how people actually manage to-dos and found the opposite: contrary to popular wisdom, people are <em>not</em> poor at prioritizing, and have well-honed strategies for the task management problems they face. The weak link is the field, not the person using it. A single box labelled &ldquo;Priority&rdquo; invites urgency to leak in, and once it has, the app can no longer tell which of the two things you meant &mdash; so it can&rsquo;t help you correct for the bias.</p>
+    </section>
+
+    <section class="finding">
+      <h2><span class="num">07</span>What our own data shows</h2>
+      <p>We looked at the tasks in TaskDriver&rsquo;s own production database &mdash; 274 of them. Two things stood out.</p>
+      <p><strong>Priority isn&rsquo;t tracking deadlines.</strong> If people were using the field as a stand-in for urgency, high-priority tasks would consistently have the nearest due dates. They don&rsquo;t: the median gap between creating a task and its due date runs 7 days for High, 30 for Medium and 10 for Low. There&rsquo;s no clean ordering, which means the field is doing something the calendar isn&rsquo;t.</p>
+      <p><strong>Priority predicts whether the date gets honored.</strong> What it does track is follow-through. High-importance tasks land essentially on their due date; unmarked ones drift by nearly a week.</p>
+      <table class="datatable">
+        <thead>
+          <tr><th>Marked as</th><th>Tasks</th><th>Completed on time</th><th>Avg. days late</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>High</td><td>33</td><td>76%</td><td>+0.1</td></tr>
+          <tr><td>Medium</td><td>46</td><td>69%</td><td>+2.6</td></tr>
+          <tr><td>Low</td><td>34</td><td>53%</td><td>+2.2</td></tr>
+          <tr><td>Unmarked</td><td>161</td><td>&mdash;</td><td>+4.8</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">Completion rates are for dated, non-recurring tasks; recurring work is excluded because its due date is the next occurrence, which distorts any measure of lead time.</p>
+      <p>That&rsquo;s the signature of an <em>importance</em> marker, not an urgency one. It doesn&rsquo;t say when something will happen &mdash; it says whether the date you set will survive contact with the week.</p>
+    </section>
+
+    <section class="finding">
+      <h2><span class="num">08</span>So we changed the question</h2>
+      <p>If a task&rsquo;s date already carries urgency &mdash; and in TaskDriver it does, down to the hour and the expected duration &mdash; then the priority field can only be carrying importance. Which means the ranking doesn&rsquo;t need to be typed at all. It can be worked out.</p>
+      <p>That&rsquo;s what <strong>Workload Optimizations</strong> does, currently in beta. The field becomes <em>Importance</em>, urgency is derived from the date, and the order to work in falls out of the two: one ranked list split into <strong>Now</strong>, <strong>Next</strong> and <strong>Later</strong>, with Now capped so it stays a set you can take from rather than another list to read. The two axes also give you Eisenhower quadrants for free &mdash; computed, so they stay true as the week moves instead of going stale the day after you file them.</p>
+      <p>And they surface the quadrant every system drops: <strong>important, but with no deadline</strong>. Those tasks appear in no date-driven view, which is precisely why they never get done. TaskDriver now notices them and asks the only question that actually helps &mdash; not <em>how important is this, really?</em>, but <em>when?</em></p>
+    </section>
+
+    <section class="finding">
+      <div class="caveat">
+        <h2>An honest caveat</h2>
+        <p>The production numbers above come from a single active account over a few months, and 274 tasks is a small sample &mdash; enough to be suggestive, not enough to be conclusive. We also can&rsquo;t fully separate &ldquo;importance&rdquo; from &ldquo;how committed I felt&rdquo; in that data; they may be the same thing wearing different names. The published research is the stronger leg here; our own data is consistent with it, which is the most we&rsquo;d claim.</p>
+      </div>
+    </section>
+  </article>
+
   <!-- References -->
   <section class="refs">
     <h2>References</h2>
@@ -450,6 +587,13 @@
       <li>Kool, W., McGuire, J. T., Rosen, Z. B., &amp; Botvinick, M. M. (2010). Decision making and the avoidance of cognitive demand. <em>Journal of Experimental Psychology: General</em>. <a href="https://pubmed.ncbi.nlm.nih.gov/20853993/" target="_blank" rel="noopener">PubMed</a></li>
       <li>On cognitive effort discounting and the &ldquo;law of less work&rdquo; (Hull, 1943; Kahneman, 1973). <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7556472/" target="_blank" rel="noopener">PMC review</a></li>
       <li>Mertens, S., et al. (2023). A meta-analytic cognitive framework of nudge and sludge. <em>Royal Society Open Science</em>, 10(11). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10685127/" target="_blank" rel="noopener">PMC</a></li>
+      <li>Zhu, M., Yang, Y., &amp; Hsee, C. K. (2018). The Mere Urgency Effect. <em>Journal of Consumer Research</em>, 45(3), 673&ndash;690. <a href="https://academic.oup.com/jcr/article-abstract/45/3/673/4847790" target="_blank" rel="noopener">Oxford Academic</a></li>
+      <li>Bellotti, V., Dalal, B., Good, N., Flynn, P., Bobrow, D. G., &amp; Ducheneaut, N. (2004). What a to-do: studies of task management towards the design of a personal task list manager. <em>CHI &rsquo;04</em>. <a href="https://dl.acm.org/doi/10.1145/985692.985785" target="_blank" rel="noopener">ACM DL</a></li>
+      <li>ITIL priority matrix &mdash; priority as a function of impact and urgency. <a href="https://blog.invgate.com/itil-priority-matrix" target="_blank" rel="noopener">Overview</a></li>
+      <li>Todoist, &ldquo;Set a priority in Todoist&rdquo; &mdash; vendor documentation defining P1 as &ldquo;Most important, urgent&rdquo;. <a href="https://www.todoist.com/help/articles/set-a-priority-in-todoist-Wy82Jp" target="_blank" rel="noopener">Help centre</a></li>
+      <li>Linear, &ldquo;Priority&rdquo; &mdash; a scale of Low / Medium / High / Urgent. <a href="https://linear.app/docs/priority" target="_blank" rel="noopener">Docs</a></li>
+      <li>Microsoft, MS-ASTASK &sect;2.2.2.14 &mdash; the task protocol field is named <em>Importance</em>. <a href="https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-astask/8fdf651f-c06e-4242-a312-6b3d9f3c996d" target="_blank" rel="noopener">Open specs</a></li>
+      <li>OmniFocus for iOS manual, &ldquo;Prioritizing with Flags&rdquo;. <a href="https://support.omnigroup.com/documentation/omnifocus/ios/2.21/en/prioritizing-with-flags/" target="_blank" rel="noopener">Omni Group</a></li>
     </ol>
   </section>
 
