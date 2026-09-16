@@ -87,7 +87,14 @@
       transform: rotate(-6deg) scale(1.08);
     }
 
-    .logo span {
+    /* Two-tone wordmark: "Task" in ink, "Driver" in the brand accent.
+       Wrapped in one element so the .logo flex gap falls between the icon
+       and the text, not between the two halves of the name. */
+    .logo-text {
+      color: var(--color-text);
+    }
+
+    .logo-text > span {
       color: var(--color-accent);
     }
 
@@ -1234,12 +1241,12 @@
       60%, 100% { transform: translateX(350%); }
     }
 
-    /* Logo accent pulse on hover */
-    .logo span {
+    /* Logo wordmark pulse on hover */
+    .logo-text {
       transition: opacity 0.2s ease;
     }
 
-    .logo:hover span {
+    .logo:hover .logo-text {
       opacity: 0.7;
     }
 
@@ -1599,7 +1606,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="#" class="logo"><img src="images/taskdriver-icon-transparent.png" alt="" class="logo-icon"><span>taskdriver</span></a>
+    <a href="#" class="logo"><img src="images/taskdriver-icon-transparent.png" alt="" class="logo-icon"><span class="logo-text">Task<span>Driver</span></span></a>
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#how">How it works</a></li>

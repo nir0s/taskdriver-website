@@ -87,7 +87,14 @@
       transform: rotate(-6deg) scale(1.08);
     }
 
-    .logo span {
+    /* Two-tone wordmark: "Task" in ink, "Driver" in the brand accent.
+       Wrapped in one element so the .logo flex gap falls between the icon
+       and the text, not between the two halves of the name. */
+    .logo-text {
+      color: var(--color-text);
+    }
+
+    .logo-text > span {
       color: var(--color-accent);
     }
 
@@ -477,7 +484,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="index.html" class="logo"><img src="images/taskdriver-icon-transparent.png" alt="" class="logo-icon"><span>taskdriver</span></a>
+    <a href="index.html" class="logo"><img src="images/taskdriver-icon-transparent.png" alt="" class="logo-icon"><span class="logo-text">Task<span>Driver</span></span></a>
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html#how">How it works</a></li>
