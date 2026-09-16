@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskDriver — Privacy Policy</title>
+  <link rel="icon" type="image/png" href="images/taskdriver-icon-transparent.png">
+  <link rel="apple-touch-icon" href="images/taskdriver-icon-transparent.png">
+  <meta name="description" content="How TaskDriver collects, uses, stores and deletes your data — including exactly what we access from Google Calendar, Gmail and Google Drive, and why.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #fafafa;
+      --color-surface: #ffffff;
+      --color-text: #111111;
+      --color-text-secondary: #555555;
+      --color-text-tertiary: #888888;
+      --color-accent: #0D9488;
+      --color-accent-light: #e4f7f5;
+      --color-done: #16a34a;
+      --color-done-light: #e7f6ec;
+      --color-border: #e5e5e5;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(250, 250, 250, 0.8);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      object-fit: cover;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(-6deg) scale(1.08);
+    }
+
+    .logo span {
+      color: var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--color-text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-signin {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      background: var(--color-text);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-signin:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ── Page header ── */
+    .page-head {
+      padding: 152px 32px 8px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .page-head h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .page-head .lead {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    .updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 28px auto 0;
+      padding: 8px 16px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border-radius: 100px;
+    }
+
+    .updated svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ── Legal prose ── */
+    .legal {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 32px 24px;
+    }
+
+    .legal section + section {
+      margin-top: 44px;
+    }
+
+    .legal h2 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .legal h3 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      margin: 26px 0 8px;
+    }
+
+    .legal p {
+      font-size: 0.9875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+
+    .legal p + p {
+      margin-top: 14px;
+    }
+
+    .legal ul {
+      margin: 14px 0 0 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .legal ul li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 0.9875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+
+    .legal ul li + li {
+      margin-top: 9px;
+    }
+
+    .legal ul li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 11px;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background: var(--color-accent);
+    }
+
+    .legal strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .legal a {
+      color: var(--color-accent);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .legal a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Scope table ── */
+    .scope-table {
+      margin-top: 18px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-surface);
+      overflow: hidden;
+    }
+
+    .scope-row {
+      padding: 18px 22px;
+    }
+
+    .scope-row + .scope-row {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .scope-name {
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      word-break: break-all;
+      margin-bottom: 7px;
+    }
+
+    .scope-row p {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+
+    /* ── Callout ── */
+    .callout {
+      margin-top: 18px;
+      padding: 22px 24px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius);
+    }
+
+    .callout p {
+      color: var(--color-text);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 32px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+
+    footer p {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+    }
+
+    .footer-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .page-head { padding: 128px 20px 8px; }
+      .legal { padding-left: 20px; padding-right: 20px; }
+      .scope-row { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="logo"><img src="images/taskdriver-icon-transparent.png" alt="" class="logo-icon"><span>taskdriver</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#pillars">What it does</a></li>
+        <li><a href="index.html#integrations">Integrations</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="research.html">The science</a></li>
+      </ul>
+      <a href="https://app.taskdriver.io" class="nav-signin">Sign in</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-head">
+    <span class="page-eyebrow">Privacy</span>
+    <h1>Privacy Policy</h1>
+    <p class="lead">TaskDriver only works if you connect it to the places your obligations already live. This page says exactly what we touch, why we touch it, and how to make it go away.</p>
+    <div class="updated">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Last updated 16 September 2026
+    </div>
+  </header>
+
+  <!-- Body -->
+  <main class="legal">
+
+    <section>
+      <h2>Who we are</h2>
+      <p>TaskDriver ("TaskDriver", "we", "us") is built by independent productivity nuts for people who want to get more done. This policy covers the TaskDriver web app at <strong>app.taskdriver.io</strong>, our mobile apps, our API, and this website.</p>
+      <p>TaskDriver is an independent project rather than a registered company. <strong>Nir Cohen</strong> decides how the personal data described in this policy is handled and is responsible for it, and can be reached at <a href="mailto:im@nir.earth">im@nir.earth</a> &mdash; for a question about this policy, or for any request under <a href="#rights">Your rights</a>.</p>
+    </section>
+
+    <section>
+      <h2>What we collect</h2>
+
+      <h3>Account information</h3>
+      <p>When you create an account we store your email address, your display name, and your authentication state. Sign-in is handled by our identity provider, Descope; we do not see or store your password, and if you sign in with Google we receive only your email address and basic profile details.</p>
+
+      <h3>The content you put in TaskDriver</h3>
+      <p>Your tasks, spaces, notes, comments, attachments, recurrence rules and preferences. This is yours. We store it so the product can show it back to you and to the people you explicitly share a space with.</p>
+
+      <h3>Data from services you connect</h3>
+      <p>Only the services you choose to connect, and only while they stay connected. The next section covers Google in detail because that is where most of it happens.</p>
+
+      <h3>Technical data</h3>
+      <p>Standard server logs — IP address, user agent, timestamps, and error traces — kept for security and debugging. We do not run third-party advertising or cross-site tracking on our apps.</p>
+    </section>
+
+    <section>
+      <h2>Google user data</h2>
+      <p>TaskDriver requests access to Google Calendar, Gmail and Google Drive only when you connect each one, and each is optional. Below is every Google permission we request and what we actually do with it.</p>
+
+      <div class="scope-table">
+        <div class="scope-row">
+          <span class="scope-name">.../auth/calendar</span>
+          <p>Read your calendars and events so TaskDriver knows your real availability, and create or update the events it schedules for you. We cache event titles, descriptions, times, your RSVP status and the event link so the app can render your day without calling Google on every keystroke.</p>
+        </div>
+        <div class="scope-row">
+          <span class="scope-name">.../auth/gmail.metadata</span>
+          <p>Read message headers — subject, sender, message ID — and the short preview snippet Gmail returns, so that starring or labelling an email can become a task with a meaningful title. We do not read, store or transmit full message bodies or attachments.</p>
+        </div>
+        <div class="scope-row">
+          <span class="scope-name">.../auth/gmail.modify</span>
+          <p>Act on the messages you have turned into tasks, and only in the ways you switch on: archive or trash an email when its task is completed or deleted. We never send email, and we never modify a message you have not linked to a task.</p>
+        </div>
+        <div class="scope-row">
+          <span class="scope-name">.../auth/gmail.labels</span>
+          <p>Create and manage the single TaskDriver label used to mark messages you have captured, and to detect messages you label yourself.</p>
+        </div>
+        <div class="scope-row">
+          <span class="scope-name">.../auth/drive.readonly</span>
+          <p>Detect when someone @-mentions you in a comment on a Drive document so it can become a task, and read file names and links for the documents you attach to tasks. Read access to file content is required by Google's Comments API — narrower permissions only cover files opened through our app, which is not how mentions reach you. We store the comment text, the commenter, and the file name and link. We do not copy, index or retain the contents of your documents.</p>
+        </div>
+        <div class="scope-row">
+          <span class="scope-name">.../auth/userinfo.email &middot; .../auth/userinfo.profile</span>
+          <p>Identify which account you just connected, so the app can label it correctly when you connect more than one.</p>
+        </div>
+      </div>
+
+      <h3>Limited Use</h3>
+      <div class="callout">
+        <p>TaskDriver's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+      </div>
+      <p>In plain terms: we use Google user data only to provide and improve the features you connected it for. We do not sell it, we do not use it for advertising, and we do not transfer it to others except as needed to run the service, to comply with the law, or as part of a merger or acquisition where it remains subject to this policy.</p>
+
+      <h3>Humans and AI</h3>
+      <p>No one at TaskDriver reads your Google user data, except with your explicit permission for a support request you have raised, or where required by law or to investigate abuse or a security incident.</p>
+      <p>We do not use Google user data to develop, train, or improve generalised artificial-intelligence or machine-learning models. Where a TaskDriver feature uses an AI model to act on your behalf, it processes only what is needed to carry out the request you made, and any model provider we use is contractually barred from training on your data.</p>
+    </section>
+
+    <section>
+      <h2>Where your data lives</h2>
+      <p>TaskDriver runs on Railway, in a managed PostgreSQL database with storage encrypted at rest by the provider. All traffic between you and us, and between us and Google, is encrypted in transit with TLS.</p>
+      <p>Access tokens and refresh tokens for connected accounts are held in that database and used only by the TaskDriver backend to make the API calls described above. Access to production systems is restricted to the operators of the service.</p>
+      <h3>Who else processes your data</h3>
+      <ul>
+        <li><strong>Railway</strong> — application hosting and database.</li>
+        <li><strong>Descope</strong> — authentication and session management.</li>
+        <li><strong>Google</strong> — the APIs you connect, and Google Cloud Pub/Sub for Gmail change notifications.</li>
+      </ul>
+      <p>We do not sell your personal data to anyone, and we never have.</p>
+    </section>
+
+    <section>
+      <h2>Keeping and deleting it</h2>
+      <p>We keep your content for as long as your account exists. Cached data from a connected service is kept only while that service stays connected.</p>
+      <ul>
+        <li><strong>Disconnect an integration</strong> and we revoke the token with Google immediately and delete the stored tokens and the cached data for that account.</li>
+        <li><strong>Delete your account</strong> and everything associated with it — tasks, spaces, connected accounts, cached Google data — is removed from our production database. Backups age out on their own cycle, within 30 days.</li>
+        <li><strong>Revoke access at Google</strong> at any time, independently of us, from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account permissions page</a>. TaskDriver stops receiving data the moment you do.</li>
+      </ul>
+      <p>Server logs are retained for up to 30 days.</p>
+    </section>
+
+    <section id="rights">
+      <h2>Your rights</h2>
+      <p>You can access, correct, export or delete your data, and you can object to or restrict how we process it. Most of this is available directly in the app; for anything that is not, email <a href="mailto:im@nir.earth">im@nir.earth</a> and we will respond within 30 days. If you are in the EEA or the UK, you also have the right to complain to your local data protection authority.</p>
+    </section>
+
+    <section>
+      <h2>Children</h2>
+      <p>TaskDriver is not directed at children under 16, and we do not knowingly collect their data. If you believe a child has given us personal data, contact us and we will delete it.</p>
+    </section>
+
+    <section>
+      <h2>Changes</h2>
+      <p>If we change this policy in a way that materially affects how we handle your data, we will update the date at the top of this page and notify you in the app or by email before the change takes effect.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 TaskDriver. We don't just track your tasks &mdash; we try to help you finish them.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </footer>
+
+</body>
+</html>

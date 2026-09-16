@@ -447,6 +447,24 @@
       color: var(--color-text-tertiary);
     }
 
+    .footer-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-text);
+    }
+
     @media (max-width: 600px) {
       nav { padding: 14px 20px; }
       .nav-links { gap: 18px; }
@@ -609,6 +627,10 @@
   <!-- Footer -->
   <footer>
     <p>&copy; 2026 TaskDriver. We don't just track your tasks &mdash; we try to help you finish them.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
   </footer>
 
 </body>
