@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskDriver — Support</title>
+  <link rel="icon" type="image/png" href="images/taskdriver-icon-transparent.png">
+  <link rel="apple-touch-icon" href="images/taskdriver-icon-transparent.png">
+  <meta name="description" content="Get help with TaskDriver on the web, iPhone and Android: signing in, sync, shared spaces, integrations and deleting your account.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #fafafa;
+      --color-surface: #ffffff;
+      --color-text: #111111;
+      --color-text-secondary: #555555;
+      --color-text-tertiary: #888888;
+      --color-accent: #0D9488;
+      --color-accent-light: #e4f7f5;
+      --color-done: #16a34a;
+      --color-done-light: #e7f6ec;
+      --color-border: #e5e5e5;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(250, 250, 250, 0.8);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      object-fit: cover;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(-6deg) scale(1.08);
+    }
+
+    /* Two-tone wordmark: "Task" in ink, "Driver" in the brand accent.
+       Wrapped in one element so the .logo flex gap falls between the icon
+       and the text, not between the two halves of the name. */
+    .logo-text {
+      color: var(--color-text);
+    }
+
+    .logo-text > span {
+      color: var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--color-text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-signin {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      background: var(--color-text);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-signin:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ── Page header ── */
+    .page-head {
+      padding: 152px 32px 8px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .page-head h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .page-head .lead {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    .updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 28px auto 0;
+      padding: 8px 16px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border-radius: 100px;
+    }
+
+    .updated svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ── Legal prose ── */
+    .legal {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 32px 24px;
+    }
+
+    .legal section + section {
+      margin-top: 44px;
+    }
+
+    .legal h2 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .legal h3 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      margin: 26px 0 8px;
+    }
+
+    .legal p {
+      font-size: 0.9875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+
+    .legal p + p {
+      margin-top: 14px;
+    }
+
+    .legal ul {
+      margin: 14px 0 0 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .legal ul li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 0.9875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+
+    .legal ul li + li {
+      margin-top: 9px;
+    }
+
+    .legal ul li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 11px;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background: var(--color-accent);
+    }
+
+    .legal strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .legal a {
+      color: var(--color-accent);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .legal a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Scope table ── */
+    .scope-table {
+      margin-top: 18px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-surface);
+      overflow: hidden;
+    }
+
+    .scope-row {
+      padding: 18px 22px;
+    }
+
+    .scope-row + .scope-row {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .scope-name {
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      word-break: break-all;
+      margin-bottom: 7px;
+    }
+
+    .scope-row p {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+
+    /* ── Callout ── */
+    .callout {
+      margin-top: 18px;
+      padding: 22px 24px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius);
+    }
+
+    .callout p {
+      color: var(--color-text);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 32px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+
+    footer p {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+    }
+
+    .footer-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-text);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .page-head { padding: 128px 20px 8px; }
+      .legal { padding-left: 20px; padding-right: 20px; }
+      .scope-row { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="logo"><img src="images/taskdriver-icon-transparent.png" alt="" class="logo-icon"><span class="logo-text">Task<span>Driver</span></span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#pillars">What it does</a></li>
+        <li><a href="index.html#integrations">Integrations</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="research.html">The science</a></li>
+      </ul>
+      <a href="https://app.taskdriver.io" class="nav-signin">Sign in</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-head">
+    <span class="page-eyebrow">Support</span>
+    <h1>Support</h1>
+    <p class="lead">Stuck, found a bug, or want something TaskDriver doesn't do yet? Write to us. A person reads every message.</p>
+    <div class="updated">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Last updated 6 November 2026
+    </div>
+  </header>
+
+  <!-- Body -->
+  <main class="legal">
+
+    <section>
+      <h2>Contact us</h2>
+      <div class="callout">
+        <p>Email <a href="mailto:im@nir.earth?subject=TaskDriver%20support">im@nir.earth</a>. We usually reply within a few days. Please tell us which app you're using (web, iPhone or Android), its version, and what you expected to happen.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Signing in</h2>
+      <p>The web app, the iPhone app and the Android app all use the same account. Sign in with Google, and your tasks and spaces will be there on every device.</p>
+      <p>If you'd rather not use Google sign-in on a device, create an API token at <strong>app.taskdriver.io → Settings → Account → API tokens</strong>. In the app, choose <strong>Use API token</strong> and paste it in. You can revoke a token from the same screen at any time.</p>
+    </section>
+
+    <section>
+      <h2>Sync and offline use</h2>
+      <p>You can complete, edit and delete tasks with no connection. The changes are saved on your device and sync automatically once you're back online. Pull down on any list to refresh it.</p>
+      <p>If a task you created on another device doesn't appear, pull to refresh. If it's still missing, contact us.</p>
+    </section>
+
+    <section>
+      <h2>Shared spaces</h2>
+      <p>The owner of a space can open its menu, choose <strong>Share space</strong>, and invite people by email as viewers or editors, or turn on a share link. If someone shared a space with you, tap the "Shared with you" banner in that space to see who else is in it or to leave it.</p>
+    </section>
+
+    <section>
+      <h2>Connected services</h2>
+      <p>Connect Google Calendar, Gmail, Google Drive, GitHub and Slack under <strong>Settings → Integrations</strong>. You can connect more than one account per service. Disconnecting a service revokes its access and deletes the data we cached from it. The <a href="privacy.html">Privacy Policy</a> explains exactly what each service shares with us.</p>
+    </section>
+
+    <section id="delete-account">
+      <h2>Deleting your account</h2>
+      <p>To delete your account, email <a href="mailto:im@nir.earth?subject=Delete%20my%20TaskDriver%20account">im@nir.earth</a> from the address you sign in with. We'll delete your account and everything attached to it: tasks, spaces, comments and connected accounts. The <a href="privacy.html">Privacy Policy</a> describes what happens to backups.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 TaskDriver. We don't just track your tasks &mdash; we try to help you finish them.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="support.html">Support</a>
+    </div>
+  </footer>
+
+</body>
+</html>
